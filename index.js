@@ -1,12 +1,12 @@
 let accuracy, URL, model, webcam, ctx, currentPose, maxPredictions, port, acc;
 
-//정확도 설정
+//정확도 설정정
 function setAccuracy() {
   accuracy = parseFloat(document.getElementById("accuracy-input").value);
   document.getElementById("saved-accuracy").innerText = accuracy;
 }
 
-//Teachable Machine url 설정
+//Teachable Machine url 설정정
 function setURL() {
   URL = document.getElementById("url-input").value;
   document.getElementById('saved-url').innerText = URL;
@@ -17,7 +17,7 @@ async function startMachine() {
   const metadataURL = URL + "metadata.json";
 
   model = await tmPose.load(modelURL, metadataURL);
-  maxPredictions = model.getTotalClasses(); //모든 동작 클래스
+  maxPredictions = model.getTotalClasses(); //모든 동작 클래스스
 
   webcam = new tmPose.Webcam(600, 400, true);
   await webcam.setup();
@@ -33,15 +33,22 @@ async function startMachine() {
 
 async function connectToSerial()
 {
-  document.getElementById("connect-to-serial").addEventListener("click", async () => {
     if ('serial' in navigator) {
       try {
+
+        if(port && port.readable)
+        {
+          alert("장치가 이미 연결되어 있습니다!");
+          return;
+        }
+
         console.log("Before serial request");
         port = await navigator.serial.requestPort();
         console.log("After serial request");
         await port.open({ baudRate: 115200 });
         console.log("After port open");
         document.getElementById("connectionStatus").innerText = "연결되었습니다."
+        alert("장치가 연결되었습니다!");
 
          // 장치 이름을 가져오기
          const portInfo = await port.getInfo();
@@ -50,17 +57,28 @@ async function connectToSerial()
          // UI에 장치 이름 표시
          document.getElementById("connectedDevice").innerText = `${deviceName}`;
 
-      } catch (error) {
-        console.error('Error:', error);
+      } 
+      catch (error) 
+      {
+        if (error.name === 'NotFoundError') 
+          {
+            alert("포트 선택이 취소되었습니다!");
+          } 
+          else 
+          {
+          console.error('Error:', error);
+          alert(`에러: ${error.message}`);
+        }
       }
     } else {
       console.error('Web Serial API is not available.');
     }
-  });
 }
 
+//여러번 호출되어 alert가 누적되는 버그로 인해 한번만 addEventListener에 등록
+document.getElementById("connect-to-serial").addEventListener("click", connectToSerial);
+
 async function disconnectToSerial() {
-  document.getElementById("disconnect-serial").addEventListener("click", async () => {
     // 포트가 열려 있고, port.readable 속성으로 열린 상태를 체크
     if (port && port.readable) {
       try {
@@ -71,20 +89,24 @@ async function disconnectToSerial() {
         // 연결 상태를 UI에 표시
         document.getElementById("connectionStatus").innerText = "연결이 해제되었습니다.";
         document.getElementById("connectedDevice").innerText = " ";
+        alert("장치가 연결 해제되었습니다!");
       } catch (error) {
         console.error("Error while closing port:", error);
+        alert(error);
       }
     } else {
       console.error("No port is connected.");
+      alert("No port is connected");
     }
-  });
 }
 
-  async function loop(_timestamp) {
+document.getElementById("disconnect-serial").addEventListener("click", disconnectToSerial);
+
+async function loop(_timestamp) {
     webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
-  }
+}
 
 async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
