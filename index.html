@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lee Ki Joon">
+    <meta name="description" content="2025년 공주대학교 진로멘토단 Teachable Machine을 사용한 모션캡쳐 RC카 웹 시리얼 통신">
+    <link rel="stylesheet" href="style.css">
+    <title>TM Pose Capture Web Serial</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div>
+        <p class="title">Teachable Machine Pose Model Web Serial</p>
+    </div>
+    <div class="mainForm">
+        <div class="settings">
+            <div class="formBody">
+                <div class="setURL">
+                    <p class="stepTitle">TM 포즈 모델 url</p>
+                    <input type="text" id = "url-input" placeholder="TM 포즈 모델 url을 입력해주세요.">
+                    <span class="bar"></span>
+                    <button class="button" onclick="setURL()" role="button">Submit</button>
+                    <p style="margin: 0px;">저장된 URL: <span id="saved-url"></span></p>
+                </div>
+                <div class="setAccuracy">
+                    <p class="stepTitle">정확도 설정(0 - 100)</p>
+                    <input type="text" id="accuracy-input" placeholder="정확도를 설정해주세요(0-100).">
+                    <span class="bar"></span>
+                    <button class="button" onclick="setAccuracy()" role="button">Submit</button>
+                    <p style="margin: 0px;">정확도: <span id="saved-accuracy"></span></p>
+                </div>
+                <div class="connectUSBTitle">
+                    <p class="stepTitle">Micro:bit USB 연결하기</p>
+                </div>
+                <div class="connectUSBButton">
+                    <button class="connect_button" onclick="connectToSerial()" id="connect-to-serial" role="button">Connect</button>
+                    <button class="connect_button" onclick="disconnectToSerial()" id="disconnect-serial" role="button">Disconnect</button>
+                </div>
+                <p style="margin: 0px;">연결 상태: <span id="connectionStatus"></span></p>
+                <p style="margin: 0px;">연결된 장치(USB Vendor ID): <span id="connectedDevice"></span></p>
+                <div class="teachableMachineStart">
+                    <p class="stepTitle">Teachable Machine 시작하기</p>
+                    <button class="button" onclick="startMachine()" role="button">Start Teachable Machine</button>
+                </div>
+            </div>
+        </div>
+        <div class="webcam">
+            <div class="webcamCanvas">
+                <canvas id="canvas"></canvas>
+                <h2><div id="current-pose"></div></h2>
+            </div>
+        </div>
+        
+    </div>
+    <p class="copyright">2025년 공주대학교 컴퓨터교육과 진로멘토단(Semicolon(;))</p>
+</body>
+</html>
