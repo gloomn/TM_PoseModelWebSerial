@@ -1,11 +1,12 @@
 let accuracy, URL, model, webcam, ctx, currentPose, maxPredictions, port, acc;
 
-
+//정확도 설정정
 function setAccuracy() {
   accuracy = parseFloat(document.getElementById("accuracy-input").value);
   document.getElementById("saved-accuracy").innerText = accuracy;
 }
 
+//Teachable Machine url 설정정
 function setURL() {
   URL = document.getElementById("url-input").value;
   document.getElementById('saved-url').innerText = URL;
@@ -16,7 +17,7 @@ async function startMachine() {
   const metadataURL = URL + "metadata.json";
 
   model = await tmPose.load(modelURL, metadataURL);
-  maxPredictions = model.getTotalClasses();
+  maxPredictions = model.getTotalClasses(); //모든 동작 클래스스
 
   webcam = new tmPose.Webcam(600, 400, true);
   await webcam.setup();
@@ -79,20 +80,13 @@ async function disconnectToSerial() {
   });
 }
 
-
-
-
   async function loop(_timestamp) {
     webcam.update();
     await predict();
     window.requestAnimationFrame(loop);
   }
 
-
-
-
-
-  async function predict() {
+async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
     const prediction = await model.predict(posenetOutput);
 
