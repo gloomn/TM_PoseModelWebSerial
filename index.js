@@ -71,7 +71,7 @@ async function connectToSerial()
         }
       }
     } else {
-      console.error('Web Serial API is not available.');
+      console.error('Web Serial API 사용이 불가능합니다!');
     }
 }
 
@@ -96,7 +96,7 @@ async function disconnectToSerial() {
       }
     } else {
       console.error("No port is connected.");
-      alert("No port is connected");
+      alert("포트가 연결되지 않았습니다!");
     }
 }
 
