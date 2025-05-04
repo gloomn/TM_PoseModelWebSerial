@@ -14,43 +14,39 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div>
-        <p class="title">Teachable Machine Pose Model Web Serial</p>
-        <div class="comedu">
-            <img src="semicolon.webp" width="45px" height="45px">
-            <p class="subTitle">국립공주대학교 컴퓨터교육과 Semicolon(;)</p>
-        </div>
-        
+    <p class="title">Teachable Machine Pose Model Web Serial</p>
+    <div class="comedu">
+        <img src="semicolon.webp" width="45px" height="45px">
+        <p class="subTitle">국립공주대학교 컴퓨터교육과 Semicolon(;)</p>
     </div>
+
     <div class="mainForm">
         <div class="settings">
             <div class="formBody">
                 <div class="setURL">
                     <p class="stepTitle">TM 포즈 모델 url</p>
-                    <input type="text" id = "url-input" placeholder="TM 포즈 모델 url을 입력해주세요.">
-                    <span class="bar"></span>
-                    <button class="button" onclick="setURL()" role="button">Submit</button>
-                    <p style="margin: 0px;">저장된 URL: <span id="saved-url"></span></p>
+                    <input type="text" id="url-input" placeholder="TM 포즈 모델 url을 입력해주세요.">
+                    <button class="button" onclick="setURL()">Submit</button>
+                    <p>저장된 URL: <span id="saved-url"></span></p>
                 </div>
                 <div class="setAccuracy">
                     <p class="stepTitle">정확도 설정(0 - 100)</p>
                     <input type="text" id="accuracy-input" placeholder="정확도를 설정해주세요(0-100).">
-                    <span class="bar"></span>
-                    <button class="button" onclick="setAccuracy()" role="button">Submit</button>
-                    <p style="margin: 0px;">정확도: <span id="saved-accuracy"></span></p>
+                    <button class="button" onclick="setAccuracy()">Submit</button>
+                    <p>정확도: <span id="saved-accuracy"></span></p>
                 </div>
                 <div class="connectUSBTitle">
                     <p class="stepTitle">Micro:bit USB 연결하기</p>
                 </div>
                 <div class="connectUSBButton">
-                    <button class="connect_button" onclick="connectToSerial()" id="connect-to-serial" role="button">Connect</button>
-                    <button class="connect_button" onclick="disconnectToSerial()" id="disconnect-serial" role="button">Disconnect</button>
+                    <button class="connect_button connect" onclick="connectToSerial()" id="connect-to-serial">Connect</button>
+                    <button class="connect_button disconnect" onclick="disconnectToSerial()" id="disconnect-serial">Disconnect</button>
                 </div>
-                <p style="margin: 0px;">연결 상태: <span id="connectionStatus"></span></p>
-                <p style="margin: 0px;">연결된 장치(USB Vendor ID): <span id="connectedDevice"></span></p>
+                <p class="connection-info">연결 상태: <span id="connectionStatus">❌연결되지 않았습니다.</span></p>
+                <p class="connection-info">연결된 장치(USB Vendor ID): <span id="connectedDevice">-</span></p>
                 <div class="teachableMachineStart">
                     <p class="stepTitle">Teachable Machine 시작하기</p>
-                    <button class="button" onclick="startMachine()" role="button">Start Teachable Machine</button>
+                    <button class="button" onclick="startMachine()">Start Teachable Machine</button>
                 </div>
             </div>
         </div>
@@ -60,11 +56,12 @@
                 <h2><div id="current-pose"></div></h2>
             </div>
         </div>
-        
     </div>
-    <div class="copyright">
-        <p class="copyrightText">ⓒ 2025 Lee Ki Joon</p>
-    </div>
-    
+
+    <footer>
+        <a class="link" href="https://github.com/gloomn/TM_PoseModelWebSerial" target="_blank">Github Source Code</a>
+        <p>ⓒ 2025 Lee Ki Joon</p>
+        <p>Licensed under the GNU General Public License v3.0.</p>
+    </footer>
 </body>
 </html>

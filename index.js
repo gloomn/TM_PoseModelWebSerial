@@ -6,7 +6,7 @@ function setAccuracy() {
   document.getElementById("saved-accuracy").innerText = accuracy;
 }
 
-//Teachable Machine url 설정정
+//Teachable Machine url 설정
 function setURL() {
   URL = document.getElementById("url-input").value;
   document.getElementById('saved-url').innerText = URL;
@@ -47,7 +47,7 @@ async function connectToSerial()
         console.log("After serial request");
         await port.open({ baudRate: 115200 });
         console.log("After port open");
-        document.getElementById("connectionStatus").innerText = "연결되었습니다."
+        document.getElementById("connectionStatus").innerText = "✅연결되었습니다."
         alert("장치가 연결되었습니다!");
 
          // 장치 이름을 가져오기
@@ -87,8 +87,8 @@ async function disconnectToSerial() {
         console.log("Serial port disconnected");
 
         // 연결 상태를 UI에 표시
-        document.getElementById("connectionStatus").innerText = "연결이 해제되었습니다.";
-        document.getElementById("connectedDevice").innerText = " ";
+        document.getElementById("connectionStatus").innerText = "❌연결이 해제되었습니다.";
+        document.getElementById("connectedDevice").innerText = " - ";
         alert("장치가 연결 해제되었습니다!");
       } catch (error) {
         console.error("Error while closing port:", error);
@@ -201,4 +201,3 @@ function drawPose(pose) {
     }
   }
 }
-
