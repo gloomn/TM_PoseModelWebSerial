@@ -154,6 +154,7 @@ input:focus {
 .webcamCanvas > canvas {
     width: 100%;
     max-width: 600px;
+    aspect-ratio: 3 / 2; /* 예: 가로 세로 비율 설정 */
     height: auto;
     border-radius: 15px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.1);
