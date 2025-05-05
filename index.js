@@ -1,3 +1,5 @@
+//Copyright (C) 2025 Lee Ki Joon
+
 let accuracy, URL, model, webcam, ctx, currentPose, maxPredictions, port, acc;
 
 //정확도 설정정
