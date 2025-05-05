@@ -2,7 +2,7 @@
 
 let accuracy, URL, model, webcam, ctx, currentPose, maxPredictions, port, acc;
 
-//정확도 설정정
+//정확도 설정
 function setAccuracy() {
   accuracy = parseFloat(document.getElementById("accuracy-input").value);
   document.getElementById("saved-accuracy").innerText = accuracy;
@@ -19,7 +19,7 @@ async function startMachine() {
   const metadataURL = URL + "metadata.json";
 
   model = await tmPose.load(modelURL, metadataURL);
-  maxPredictions = model.getTotalClasses(); //모든 동작 클래스스
+  maxPredictions = model.getTotalClasses(); //모든 동작 클래스
 
   webcam = new tmPose.Webcam(600, 400, true);
   await webcam.setup();
