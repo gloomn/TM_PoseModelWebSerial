@@ -20,7 +20,7 @@
 5. Connect Micro:bit with your PC and Click Connect button.
 6. Click Start **Teachable Machine** button
 
-#### Use via Hosted Website
+#### Run via Hosted Website
 1. Visit the hosted site at: https://gloomn.github.io/TM_PoseModelWebSerial/
 2. Allow access to your webcam and serial port when prompted.
 3. Set the model URL and accuracy
