@@ -7,7 +7,8 @@
 - This project is used by Semicolon(;) club of the Department of Computer Education at Kongju National University for the Carrer Mentoring
 
 ## Note
-- Uses [MakeCode](https://makecode.microbit.org/#) for Micro:bit programming.
+- Uses [Make Code](https://makecode.microbit.org/#) for Micro:bit programming.
+- Uses [Teachable Machine](https://teachablemachine.withgoogle.com/train/pose) for training pose model
 - Recommended: Use Google Chrome for best compatibility.
 
 ## How to use
